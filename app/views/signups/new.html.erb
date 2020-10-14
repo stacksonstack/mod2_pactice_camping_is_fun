@@ -1,8 +1,6 @@
 <%= form_for @signup do |f|%>
-<%= f.label "Choose Your Activity" %>
 <%= f.collection_select :activity_id, Activity.all, :id, :name  %>
-<%= f.label "Pick Camper" %>
 <%= f.collection_select :camper_id, Camper.all, :id, :name  %>
 <%= f.number_field :time %>
-<%= f.submit "Sign Up For Activity" %>
+<%= f.submit  %>
 <% end%>

@@ -27,7 +27,6 @@ class CampersController < ApplicationController
   private
 
   def camper_params
-    params.require(:camper).permit(:name, :age)
+    params.require(:camper).permit(:age, :name)
   end
-  
 end

@@ -5,16 +5,21 @@ class SignupsController < ApplicationController
    end
 
    def create
-       signup = Signup.new(params.require(:signup).permit(:activity_id, :camper_id, :time))
-       if signup.valid?
-         flash[:success] = "signup successfully created"
-         redirect_to camper_path(signup.camper_id)
-       else
-         flash[:error] = "Something went wrong"
-         redirect_to new_signup_path
-       end
-   end
-   
-   
+    @signup = Signup.create(signup_params)
+
+    if @signup.valid?
+        redirect_to camper_path(@signup.camper_id)
+    else
+        flash[:my_errors] = @signup.errors.full_messages
+        redirect_to new_signup_path
+    end
+    
+end
+
+private
+
+def signup_params
+    params.require(:signup).permit(:camper_id, :activity_id, :time)
+end
     
 end
